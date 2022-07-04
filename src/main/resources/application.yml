@@ -1,0 +1,98 @@
+info:
+    app:
+        desc: API Bridge To SPASES Service 
+        name: bridge-to-spades-modules-bsm
+        contact:
+           name: Annabi
+           email: annabi.mabrouka99@gmail
+           website: https://www.mss.tn/
+        license: COMMERCIAL
+        license-url: 'https://www.mss.tn/LICENSE-1-2'
+        version: 1.0.1
+        jwtSecret: bezKoderSecretKey
+        jwtExpirationMs: 86400000
+          
+spring:
+  application:
+    name: bsm-service
+  zipkin:
+    base-url: http://zipkin-server.ddns.net:9411/zipkin/
+    
+# Security configuration
+#  security:
+#    user:
+#      name: zeddini
+#      password: zeddini
+  # Database
+  datasource: 
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      pool-name: ':::::::::::: Hikari DS Spades_1-MS POOL ::::::::::::'
+      connection-timeout: 60000
+      maximum-pool-size: 30
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5433/spades?currentSchema=spades_webinterface_config
+    username: postgres
+    password: 123
+    
+
+  jpa:
+    hibernate:
+      ddl-auto: update # When you launch the application for the first time - switch "none" at "create"
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-ddl: false
+    show-sql : false
+    properties:
+      hibernate:
+        format_sql: true
+        
+# Logger configuration  
+logging:
+  pattern:
+     console: '%d{yyyy-MM-dd HH:mm:ss} - %msg%n'
+     file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+  level:
+    root: INFO
+    org.springframework.web: ERROR
+    org.hibernate: ERROR
+
+# Eureka Client setting    
+#eureka:
+#  instance:
+#    hostname: localhost
+#  client:
+#    serviceUrl:
+#      defaultZone : https://nexio-register-erureka-server.herokuapp.com/eureka/ 
+      
+# CF UAA setting  
+#uaa:
+#  url: ${UAA_URI:http://localhost:8080/uaa}
+#  # Client ID on whose behalf the access_token will be verified by Resource Server
+#  clientId: uaa-ui-client
+#  clientSecret: secret
+     
+# Keycloak setting       
+#keycloak:
+##  auth-server-url: ${UAA_URI:http://192.168.2.177:8080/auth/}
+#  auth-server-url: http://key-cloak.ddns.net:8080/auth/
+#  realm: nexio-api-rest-space
+#  resource : stock
+#  public-client : false
+#  bearer-only : true
+#  credentials : 
+#    secret : 6de31c9b-3acb-4ae0-a3d5-639bc72c5d29
+#    use-resource-role-mappings : true  
+
+# Open Feign Client setting
+#feign:
+#  client:
+#    config:
+#      default:
+#        connectTimeout: 5000
+#        readTimeout: 10000
+#        loggerLevel: basic
+
+#  Server configuration
+server:
+  port: 8081
