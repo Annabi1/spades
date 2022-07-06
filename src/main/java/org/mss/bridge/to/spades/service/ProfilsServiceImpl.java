@@ -3,6 +3,8 @@ package org.mss.bridge.to.spades.service;
 
 
 
+import java.util.ArrayList;
+
 import java.util.List;
 
 
@@ -10,10 +12,15 @@ import java.util.Optional;
 
 import javax.transaction.Transactional;
 
+import org.json.simple.JSONObject;
+import org.mss.bridge.to.spades.domain.JsonFile;
 import org.mss.bridge.to.spades.domain.Profils;
+import org.mss.bridge.to.spades.repository.FormsRepository;
+import org.mss.bridge.to.spades.repository.JsonFileRepository;
 import org.mss.bridge.to.spades.repository.ProfilsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 
 
 
@@ -57,11 +64,7 @@ public class ProfilsServiceImpl  implements IProfilsService{
 			 */ 
      
      
-     public List<Profils> getAllActors()
-     {
-         return (List<Profils>)
-            profilsRepo.findAll();
-     }
+   
 	
 	
 
@@ -81,5 +84,71 @@ public class ProfilsServiceImpl  implements IProfilsService{
 		return profilsRepo.save(profil);}
 	
 
+	@Autowired
+	FormsRepository profilRepository;
 	
+	@Autowired
+	ProfilsRepository profilsscenariosrepo ;
+	
+	@Autowired
+	JsonFileService fileService ;
+	@Autowired
+    JsonFileRepository  jsonFileRepository ;
+	
+	
+	public JsonFile getScenarioProfil(String name) {
+		String dataFile = name+".xlsx_Actors";
+		JsonFile scenario = jsonFileRepository.getScenarioData(dataFile);
+		           
+
+		       return scenario;
+		   }
+	
+	
+	
+    public void saveProfil(String idscenario, JsonFile file ) {
+    	List<JSONObject> list = new ArrayList<JSONObject>();
+    	list = file.getData();
+    	List<String> list2 = new ArrayList<String>();
+    	
+    	
+
+    	for(int i = 0 ; i < list.size() ; i++){
+    	JSONObject obj = new JSONObject(list.get(i));
+    	String attDef = String.valueOf(obj.get("DEFINITION"));
+    	String attName = String.valueOf(obj.get("NAME"));
+    	String name =attName.replaceAll(" ","_");
+    //	String def =attDef.replaceAll(" ","_");
+    	
+    
+    	
+    	Profils profils=new Profils(name,attDef);
+    	
+    	profilsRepo.save(profils);
+    	
+    	
+        }
+    	}
+    	 
+    	
+    	 
+
+			/*
+			 * public List<String> getAllActors (Actors actor ){ List<Actors> liste=new
+			 * ArrayList<>();
+			 */ 
+     
+     
+     public List<Profils> getAllActors()
+     {
+         return (List<Profils>)
+        		 profilsRepo.findAll();
+     }
+   
+    
+
+	
+	
+
+
 }

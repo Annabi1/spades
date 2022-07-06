@@ -2,6 +2,7 @@ package org.mss.bridge.to.spades.domain;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import javax.persistence.Column;
