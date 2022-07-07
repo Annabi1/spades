@@ -9,15 +9,14 @@ info:
         license: COMMERCIAL
         license-url: 'https://www.mss.tn/LICENSE-1-2'
         version: 1.0.1
-        jwtSecret: bezKoderSecretKey
-        jwtExpirationMs: 86400000
+    
           
 spring:
   application:
     name: bsm-service
   zipkin:
     base-url: http://zipkin-server.ddns.net:9411/zipkin/
-    
+  
 # Security configuration
 #  security:
 #    user:
@@ -33,8 +32,10 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5433/spades_web_interface?currentSchema=spades_webinterface_config
     username: postgres
+
     password: postgres
-    
+
+  
 
   jpa:
     hibernate:

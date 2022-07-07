@@ -26,14 +26,14 @@ public class Flux  implements Serializable {
 		@Id
 		@Column(name = "id_flux", unique = true, nullable = false)
 		private String id_flux;
-		@Column(name = "description_flux", unique = true, nullable = true)
+		@Column(name = "description_flux",  length = 2048)
 		private String description_flux;
-		@Column(name = "initiateur", unique = true, nullable = true)
+		@Column(name = "initiateur")
 		private boolean initiateur;
 		
-		@Column(name = "flux_suivant", unique = true, nullable = true)
+		@Column(name = "flux_suivant")
 		private String flux_suivant;
-		@Column(name = "squelette_xsl", unique = true, nullable = true)
+		@Column(name = "squelette_xsl")
 		private String squelette_xsl;
 		@ManyToOne
 	    @JoinColumn(name="id_form", nullable=true)

@@ -97,14 +97,15 @@ public class ScenarioServiceImpl implements IScenarioService {
     	for(int i = 0 ; i < list.size() ; i++){
     	JSONObject obj = new JSONObject(list.get(i));
     	
-    	String attdesScenario=  null ;//String.valueOf(obj.get("Process name"));
-    	String scenarioDef = String.valueOf(obj.get("Process definition"));
+    	String attdesScenario= String.valueOf(obj.get("Process definition"));
+    	String scenarioDef = String.valueOf(obj.get("Process name"));
     	//String id =attidScenario.replaceAll(" ","_");
     	//String formSc =idformScenario.replaceAll(" ","_");
-    	//String defintion =attdesScenario.replaceAll(" ","_");
+    	String id =scenarioDef.replaceAll(" ","_");
     	
     	Scenario form=new Scenario();
-    	form.setId_scenario(scenarioDef);
+    	form.setId_scenario(id);
+    	form.setDescription_scenario(idscenario);
     	form.setDescription_scenario(attdesScenario);
     	form.setForms(formsRepo.getById(idscenario));
     	scenarioRepo.save(form);
@@ -114,7 +115,11 @@ public class ScenarioServiceImpl implements IScenarioService {
 
 
 
-
+    public List<Scenario> getAllScenarios()
+    {
+        return (List<Scenario>)
+        		scenarioRepo.findAll();
+    }
 
 
 

@@ -12,7 +12,10 @@ import org.json.simple.JSONObject;
 import org.mss.bridge.to.spades.domain.Flux;
 import org.mss.bridge.to.spades.domain.JsonFile;
 import org.mss.bridge.to.spades.repository.FluxRepository;
+import org.mss.bridge.to.spades.repository.FormsRepository;
 import org.mss.bridge.to.spades.repository.JsonFileRepository;
+import org.mss.bridge.to.spades.repository.ProfilsRepository;
+import org.mss.bridge.to.spades.repository.ScenarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,6 +29,15 @@ public class FluxServiceImpl implements IFluxService {
 	@Autowired
 	private FluxRepository fluxRepo;
 	
+	@Autowired
+	private ProfilsRepository profilsrepo;
+	
+	
+	@Autowired
+	private FormsRepository formsrepo;
+	
+	@Autowired
+	private ScenarioRepository scenariorepo;
 
 	@Override
 	public List<Flux> findAll() {
@@ -126,10 +138,17 @@ public class FluxServiceImpl implements IFluxService {
     	Flux flux=new Flux();
     	flux.setDescription_flux(attDef);
     	flux.setId_flux(attName);
+    	flux.setType_emetteur(profilsrepo.getById(typeemetteur));
+       	flux.setType_destinataire(profilsrepo.getById(typedes));
+       	flux.setForm(formsrepo.getById(idform));
+       	flux.setInitiateur(type);
+       	flux.setFlux_suivant(flux_suivant);
+       	flux.setScenarios(scenariorepo.getById(idscenario));
+       	
     	fluxRepo.save(flux);
         }
     	}
-    }
+    }	
     	 
 	
 
