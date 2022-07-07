@@ -22,12 +22,14 @@ import lombok.ToString;
 public class Scenario implements Serializable {
     private static final long serialVersionUID = 1L;
 		@Id
-		@Column(name = "id_scenario", unique = true, nullable = false)
+		@Column(name = "id_scenario", unique = true)
 		private String id_scenario;
-		@Column(name = "desciption_scenario", unique = true, nullable = true)
+		
+		@Column(name = "desciption_scenario", length = 2048)
 		private String description_scenario;
+		
 		@ManyToOne
-	    @JoinColumn(name="id_form_scenario", nullable=false)
+	    @JoinColumn(name="id_form_scenario")
 	    private Forms forms;
 		public String getId_scenario() {
 			return id_scenario;

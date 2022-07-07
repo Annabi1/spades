@@ -26,7 +26,7 @@ public class Flux  implements Serializable {
 		@Id
 		@Column(name = "id_flux", unique = true, nullable = false)
 		private String id_flux;
-		@Column(name = "description_flux", unique = true, nullable = true)
+		@Column(name = "description_flux",  length = 2048)
 		private String description_flux;
 		@Column(name = "initiateur", unique = true, nullable = true)
 		private boolean initiateur;

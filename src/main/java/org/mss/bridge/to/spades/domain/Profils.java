@@ -21,7 +21,7 @@ public class Profils implements Serializable {
 	@Id
 	@Column(name = "id_profil", unique = true, nullable = false)
 	private String id_profil;
-	@Column(name = "description_profil", unique = true, nullable = true)
+	@Column(name = "description_profil",length = 2048)
 	private String description_profil;
 	//Association between scenario and profils
 	@OneToMany(mappedBy="form")

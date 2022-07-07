@@ -114,7 +114,11 @@ public class ScenarioServiceImpl implements IScenarioService {
 
 
 
-
+    public List<Scenario> getAllScenarios()
+    {
+        return (List<Scenario>)
+        		scenarioRepo.findAll();
+    }
 
 
 

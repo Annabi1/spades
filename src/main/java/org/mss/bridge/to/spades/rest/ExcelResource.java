@@ -2,7 +2,7 @@ package org.mss.bridge.to.spades.rest;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
+
 
 import org.mss.bridge.to.spades.domain.JsonFile;
 import org.mss.bridge.to.spades.service.FluxServiceImpl;

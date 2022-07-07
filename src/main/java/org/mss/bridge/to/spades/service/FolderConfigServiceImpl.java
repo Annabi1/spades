@@ -20,6 +20,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+
+
+
 @Transactional
 @Service
 public class FolderConfigServiceImpl implements IFolderConfigService {
@@ -102,6 +105,21 @@ public class FolderConfigServiceImpl implements IFolderConfigService {
     	
         }
     	}
-
-
+    public List<FolderConfig> getAllActivities()
+    {
+        return (List<FolderConfig>)
+        		folderRepo.findAll();
+    }
+    
+    public List<FolderConfig> getAllActivitiesByIdScenario(String idScenario)
+    {
+        return folderRepo.findByIdScenario(idScenario);
+    }
+    
+    public FolderConfig getActivityByIdScenarioAndType(String idScenario,String type)
+    {
+        return folderRepo.findByIdScenarioAndType(idScenario,type);
+    }
+	
+    	  
 }

@@ -30,9 +30,20 @@ public class FolderConfig implements Serializable {
 	    @JoinColumn(name = "actor", referencedColumnName = "id_profil")
 		private Profils profils;
 
+		private String next_activity;
+
+		private String condition;
+	   
+		private String duration;
+		
+		private String type ;
+		
+		@Column(length = 2048)	
+		private String defintion ;
+		
 		@OneToOne(cascade = CascadeType.ALL)
-	    @JoinColumn(name = "id_scenario", referencedColumnName = "id_scenario")
-		private Scenario scenarios;
+	    @JoinColumn(name = "idScenario", referencedColumnName = "id_scenario")
+		private Scenario idScenario;
 		@Column(name = "xsl_skeleton", unique = true, nullable = true)
 		private String xsl_skeleton;
 		public FolderConfig() {
@@ -52,10 +63,10 @@ public class FolderConfig implements Serializable {
 			this.profils = profils;
 		}
 		public Scenario getScenario() {
-			return scenarios;
+			return idScenario;
 		}
 		public void setScenario(Scenario scenario) {
-			this.scenarios = scenario;
+			this.idScenario = scenario;
 		}
 		public String getXsl_skeleton() {
 			return xsl_skeleton;
@@ -63,11 +74,42 @@ public class FolderConfig implements Serializable {
 		public void setXsl_skeleton(String xsl_skeleton) {
 			this.xsl_skeleton = xsl_skeleton;
 		}
+		
+		public String getNext_activity() {
+			return next_activity;
+		}
+		public void setNext_activity(String next_activity) {
+			this.next_activity = next_activity;
+		}
+		public String getCondition() {
+			return condition;
+		}
+		public void setCondition(String condition) {
+			this.condition = condition;
+		}
+		public String getDuration() {
+			return duration;
+		}
+		public void setDuration(String duration) {
+			this.duration = duration;
+		}
+		public String getType() {
+			return type;
+		}
+		public void setType(String type) {
+			this.type = type;
+		}
+		public String getDefintion() {
+			return defintion;
+		}
+		public void setDefintion(String defintion) {
+			this.defintion = defintion;
+		}
 		public FolderConfig(String activity, Profils profils, Scenario scenarios, String xsl_skeleton) {
 			super();
 			this.activity = activity;
 			this.profils = profils;
-			this.scenarios = scenarios;
+			this.idScenario = scenarios;
 			this.xsl_skeleton = xsl_skeleton;
 		}
 		

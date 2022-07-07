@@ -20,13 +20,8 @@ import org.json.simple.JSONObject;
 @Entity
 @Table(name = "json_file")
 public class JsonFile {
-	
-	 @Id
-	    @GeneratedValue(generator = "uuid")
-	    @GenericGenerator(name = "uuid", strategy = "uuid2")
-	    @Column(length = 64)
-	    private String id;
 
+	 @Id
 	    private String name;
 
 	    @ElementCollection
@@ -41,16 +36,6 @@ public class JsonFile {
 		public JsonFile(String name, List<JSONObject> file) {
 			this.name = name;
 			this.data = file;
-		}
-
-
-		public String getId() {
-			return id;
-		}
-
-
-		public void setId(String id) {
-			this.id = id;
 		}
 
 
